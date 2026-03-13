@@ -78,11 +78,11 @@ async def destek(interaction: discord.Interaction):
 
 @bot.tree.command(name="davet", description="Sunucu davet linkini verir")
 async def davet(interaction: discord.Interaction):
-    await interaction.response.send_message("🔗 Davet: https://discord.gg/sunucun")
+    await interaction.response.send_message("🔗 Davet: https://discord.gg/ZynmCFWEAU")
 
 import os
 # ... senin diğer kodların ...
 
 # En altta sadece bu olsun:
-token = os.environ.get('MTQ4MTkzODkwNjYwMDcwMjAwNA.GrRjuV.CAIEMWbX6t1YnJ2UtFQ36cyILL_1PSUD6oJHZU')
+token = os.environ.get('TOKEN')
 bot.run(token)
