@@ -80,4 +80,9 @@ async def destek(interaction: discord.Interaction):
 async def davet(interaction: discord.Interaction):
     await interaction.response.send_message("🔗 Davet: https://discord.gg/sunucun")
 
-bot.run('MTQ4MTkzODkwNjYwMDcwMjAwNA.GbDYFS.CFpYwft_srXMTAk0TBVmFBthfwbIEwM4l9revI')
+import os
+# ... senin diğer kodların ...
+
+# En altta sadece bu olsun:
+token = os.environ.get('MTQ4MTkzODkwNjYwMDcwMjAwNA.GrRjuV.CAIEMWbX6t1YnJ2UtFQ36cyILL_1PSUD6oJHZU')
+bot.run(token)
