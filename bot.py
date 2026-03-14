@@ -18,10 +18,16 @@ async def on_ready():
 class DestekSelect(discord.ui.Select):
     def __init__(self):
         options = [
-            discord.SelectOption(label="İade", description="İade işlemleri için", emoji="💸"),
-            discord.SelectOption(label="Ceza İtiraz", description="Ceza itirazları", emoji="⚖️"),
-            discord.SelectOption(label="Giriş Problemleri", description="Giriş sorunları", emoji="🔑"),
-            discord.SelectOption(label="Diğer", description="Diğer konular", emoji="📦")
+            discord.SelectOption(label="Klan Alımı", description="Klanımıza katılmak istiyorum", emoji="🛡️"),
+            discord.SelectOption(label="Klan İçi Sorun", description="Bir üyeyle sorunum var", emoji="⚠️"),
+            discord.SelectOption(label="Etkinlik Önerisi", description="Güzel bir fikrim var", emoji="💡"),
+            discord.SelectOption(label="Diğer", description="Başka bir konu", emoji="📦")
+        
+        super().__init__(placeholder="Destek konusu seçiniz...", options=options)
+
+    async def callback(self, interaction: discord.Interaction):
+        # Yetkililere mesaj göndermek istersen burayı değiştirebiliriz
+        await interaction.response.send_message(f"Destek talebin alındı: **{self.values[0]}**. Yetkililerimiz en kısa sürede dönüş yapacaktır!", ephemeral=True)
         ]
         super().__init__(placeholder="Kategori seçiniz...", options=options)
 
