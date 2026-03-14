@@ -23,13 +23,27 @@ async def on_message(message):
     await bot.process_commands(message)
 
 # Destek Menüsü
-class DestekSelect(discord.ui.Select):
-    def __init__(self):
-        options = [
-            discord.SelectOption(label="Klan Alımı", emoji="🛡️"),
-            discord.SelectOption(label="Klan İçi Sorun", emoji="⚠️"),
-            discord.SelectOption(label="Etkinlik Önerisi", emoji="💡"),
-            discord.SelectOption(label="Diğer", emoji="📦")
+async def callback(self, interaction: discord.Interaction):
+        guild = interaction.guild
+        kategori_adi = self.values[0]
+        
+        # Yetkililerin görebileceği özel izinler
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(read_messages=False),
+            interaction.user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
+            guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
+        }
+        
+        # Yeni kanal oluştur
+        kanal_ismi = f"ticket-{interaction.user.name}"
+        channel = await guild.create_text_channel(name=kanal_ismi, overwrites=overwrites)
+        
+        # Kanala ilk mesajı at
+        embed = discord.Embed(title=f"🎫 {kategori_adi} Talebi", description=f"{interaction.user.mention}, yetkililerimiz seninle ilgilenecek.", color=discord.Color.green())
+        await channel.send(embed=embed)
+        
+        # Kullanıcıya bilgi ver
+        await interaction.response.send_message(f"Ticket kanalın açıldı: {channel.mention}", ephemeral=True)
         ]
         super().__init__(placeholder="Kategori seçiniz...", options=options)
     async def callback(self, interaction: discord.Interaction):
