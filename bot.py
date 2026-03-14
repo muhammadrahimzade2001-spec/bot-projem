@@ -36,7 +36,7 @@ class DestekView(discord.ui.View):
 # --- KOMUTLAR ---
 @bot.tree.command(name="yardim", description="Yardım menüsü")
 async def yardim(interaction: discord.Interaction):
-    embed = discord.Embed(title="🤖 TaseNW Yardım Menüsü", color=discord.Color.gold())
+    embed = discord.Embed(title="🤖 MesxeZe Yardım Menüsü", color=discord.Color.gold())
     embed.add_field(name="🛠️ Yönetim", value="/sil, /ban, /mute, /kick", inline=False)
     embed.add_field(name="ℹ️ Genel", value="/sunucubilgi, /avatar, /ping, /davet", inline=False)
     embed.add_field(name="🎫 Destek", value="/destek", inline=False)
@@ -44,7 +44,7 @@ async def yardim(interaction: discord.Interaction):
 
 @bot.tree.command(name="destek", description="Destek sistemi")
 async def destek(interaction: discord.Interaction):
-    embed = discord.Embed(title="🎫 TaseNW - Destek", description="Desteğe ihtiyacınız varsa aşağıdaki kısımdan kategori seçin.", color=discord.Color.purple())
+    embed = discord.Embed(title="🎫 MesxeZe - Destek", description="Desteğe ihtiyacınız varsa aşağıdaki kısımdan kategori seçin.", color=discord.Color.purple())
     await interaction.response.send_message(embed=embed, view=DestekView())
 
 @bot.tree.command(name="sunucubilgi", description="Sunucu bilgisi")
